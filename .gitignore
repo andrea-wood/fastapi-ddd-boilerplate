@@ -1,0 +1,73 @@
+
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+.venv/
+venv/
+env/
+ENV/
+
+*.egg-info/
+dist/
+build/
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ======================
+# FastAPI / App
+# ======================
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+
+# local configs
+*.sqlite3
+
+# ======================
+# IDE
+# ======================
+.vscode/
+.idea/
+
+# ======================
+# Docker
+# ======================
+*.pid
+
+# Docker volumes (local overrides)
+docker-compose.override.yml
+
+# ======================
+# OS
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# Jupyter (se usato)
+# ======================
+.ipynb_checkpoints/
+
+# ======================
+# Mypy / type checking
+# ======================
+.mypy_cache/
+.dmypy.json
+
+# ======================
+# Redis / Postgres local dumps (opzionale)
+# ======================
+dump.rdb
+*.dump
