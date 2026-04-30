@@ -1,6 +1,6 @@
 import uuid
 
-from app.shared.domain.aggregate_root_id import AggregateRootId
+from app.shared.domain.value_object.aggregate_root_id import AggregateRootId
 
 class UserId(AggregateRootId):
 

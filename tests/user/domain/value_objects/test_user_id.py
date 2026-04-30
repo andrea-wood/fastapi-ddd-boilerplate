@@ -1,5 +1,6 @@
 import pytest
-from src.user.domain.value_objects.user_id import UserId
+
+from app.user.domain.value_object.user_id import UserId
 
 class TestUserId:
 
