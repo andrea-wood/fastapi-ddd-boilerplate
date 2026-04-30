@@ -4,3 +4,5 @@ uvicorn[standard]
 psycopg2-binary
 redis
 sqlalchemy
+uuid
+pytest>=7.4.0
