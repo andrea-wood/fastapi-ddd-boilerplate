@@ -1,20 +1,29 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
     container_name: pyddd
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
       - .:/code
     ports:
       - "8000:8000"
+      - "5678:5678"
     environment:
       - DATABASE_URL=postgresql+psycopg2://postgres:postgres@db:5432/app_db
       - REDIS_URL=redis://redis:6379/0
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - PYTHONUNBUFFERED=1
+      - DEBUG=True
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_started
+      rabbitmq:
+        condition: service_healthy
 
   db:
     image: postgres:15
@@ -41,5 +50,20 @@ services:
     ports:
       - "6379:6379"
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: pyrabbitmq
+    restart: always
+    ports:
+      - "5672:5672"   # AMQP (app ↔ broker)
+      - "15672:15672" # UI management dashboard
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
 volumes:
   postgres_data:
