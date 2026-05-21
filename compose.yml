@@ -2,7 +2,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       target: dev
     container_name: pyddd
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
