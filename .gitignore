@@ -42,6 +42,7 @@ htmlcov/
 .idea/
 .vscode/extensions.json
 .vscode/settings.json
+.code-workspace
 
 # ======================
 # Docker
